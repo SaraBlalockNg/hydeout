@@ -6,7 +6,7 @@ highlighter:      rouge
 title:            Sara Blalock Ng
 tagline:          'Computational Linguist'
 description:      'Computational Linguistics Ph.D. student at the University of Washington'
-url:              https://fongandrew.github.io
+url:              https://sarablalockng.github.io
 baseurl:          '/'
                   # the optional subpath of your site, e.g. "/blog"
                   # NB: This applies to all pages in your Jekyll site.
@@ -15,8 +15,8 @@ baseurl:          '/'
                   # sidebar_blog_link below.
 
 author:
-  name:           'Andrew Fong'
-  url:            https://twitter.com/fongandrewc
+  name:           'Sara Ng'
+  url:            https://twitter.com/SaraBlalockNg
 
 paginate:         5
 # paginate_path:    '/page:num'
