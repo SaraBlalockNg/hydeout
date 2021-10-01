@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+<body style="font-family:Arial;text-align:center">
+<p> This is the Taboo version of the Stroop Test.  You can play by clicking any of the buttons or the corresponding keys on the keyboard to start.  Good luck!</p>
+
+<p id="word" style="color:black">Click any button to begin.</p>
+
+<button onclick="myFunction('red')">Red (r)</button>
+<button onclick="myFunction('blue')">Blue (b)</button>
+<button onclick="myFunction('green')">Green (g)</button>
+<button onclick="myFunction('orange')">Orange (o)</button>
+<button onclick="myFunction('fuchsia')">Fuchsia (f)</button>
+<button onclick="myFunction('DarkOrchid')">Purple (p)</button>
+<p></p>
+<table id="results" border="1"><tr><th>Word</th><th>Time (in ms)</th><th>Accuracy</th></tr></table>
+
+<script>
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 82) {
+        myFunction('red');
+
+    }
+    else if (event.keyCode == 66) {
+        myFunction('blue');
+    }
+	else if (event.keyCode == 71) {
+        myFunction('green');
+    }
+	else if (event.keyCode == 79) {
+        myFunction('orange');
+    }
+	else if (event.keyCode == 70) {
+        myFunction('fuchsia');
+    }
+	else if (event.keyCode == 80) {
+        myFunction('DarkOrchid');
+    }
+}, true);
+
+var words = ['hat','this','Robert','under','backpack','granola','tire',
+          'dick','cunt','nigger','table','fart','heck','dingus','dickhole',
+          'ass','God','book','friend','into','sheared','shit','poop','retard',
+          'cancer','putain'];
+		  
+words = shuffle(words);
+		  
+var colors = ['red','blue','green','fuchsia','orange','DarkOrchid'];
+
+var t = new Date();
+var last = t.getTime();
+
+var times = [];
+
+var correct = [];
+
+var counter = 0;
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+function myFunction(color) {
+	if (counter < 26 ) {
+		var tt = new Date();
+		var newt = tt.getTime();
+		times.push(newt-last);
+		last = newt;
+		var curcol = document.getElementById("word").style.color;
+		var cur = document.getElementById("word").innerHTML;
+		if (curcol == color) {
+			correct.push('correct');
+		}
+		else {
+			correct.push('incorrect');
+		}
+		document.getElementById("word").innerHTML = words[counter];
+		counter = counter + 1;
+		var new_idx = Math.floor(Math.random()*6);
+		document.getElementById("word").style.color = colors[new_idx];
+	}
+	else {
+		//document.removeEventListener('keydown',function(event),true);
+		document.getElementById("word").innerHTML = "Done!";
+		document.getElementById("word").style.color = 'black';
+		var i;
+		var orderArray = [];
+		for (i=0; i<26; i++) {
+			orderArray.push([words[i],times[i],correct[i]]);
+		}
+		var table = document.getElementById("results");  // set this to your table
+		var tbody = document.createElement("tbody");
+		table.appendChild(tbody);
+		orderArray.forEach(function(items) {
+			var row = document.createElement("tr");
+			items.forEach(function(item) {
+				var cell = document.createElement("td");
+				cell.textContent = item;
+				row.appendChild(cell);
+			});
+			tbody.appendChild(row);
+		});
+		sortTable()
+	}
+}
+
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("results");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      // Check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        // If so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+</script>
+
+</body>
+</html>
