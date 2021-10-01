@@ -1,5 +1,6 @@
 ---
 layout: page
+title: Teaching
 sidebar_link: true
 order: 2
 ---
