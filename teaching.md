@@ -13,7 +13,7 @@ order: 2
 
 As a graduate student at UW, I am a TA for various Linguistics and Computer Science courses.  My teaching evaluations are [here](docs/teaching_evals.pdf).  <!--I also have <a href=docs/teaching_goals.html>ongoing goals for improving student outcomes</a>.-->
 
-# Teaching Summary:
+## Teaching Summary:
 
 - Spring 2018:  LING 269 Swearing and Taboo Language \[[course summary](https://myplan.uw.edu/course/#/courses/LING269)\]
 - Fall 2018:  LING 570 Shallow Processing Techniques for Natural Language Procesing \[[course summary](https://myplan.uw.edu/course/#/courses/LING570)\]
