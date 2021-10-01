@@ -5,13 +5,13 @@ sidebar_link: true
 order: 1
 ---
 
-# Ongoing experiments
+## Ongoing experiments
 
 "Tap a rhythm or play a melody" (mTurk) \[[Example 1](metrical/piano_sample), [Example 2](metrical/taps_sample)\]
 
 [Opinions on Toisanese Sentences](socio/experiment.php)
 
-# About
+## About
 I do Natural Language Processing on corpus speech data.  My areas of interest include use of linguistic strctures in conjunction with deep learning methods, acoustic language modeling, and NLP in general for low-resource language tasks, especially for languages without orthographic forms. <!-- My research goal is to create innovative algorithmic advances and to align existing frameworks with the needs of underrepresented language communities.--> I believe that prosody is an exciting and underexplored frontier for the advancement <!--implementation--> of the state-of-the-art in deep learning for natural language understanding.
 
 The link to my Undergraduate thesis, *Musical text-setting as evidence for syllabficiation of highly moraic structures in English*, is [here](docs/thesis.pdf))
