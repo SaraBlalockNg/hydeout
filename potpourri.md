@@ -2,6 +2,7 @@
 layout: page
 title: Potpourri
 sidebar_link: true
+order: 3
 ---
 
 Here are a couple of my favorite links for learning about Hoisanva Chinese.  I hope you find something to enjoy in these resources
