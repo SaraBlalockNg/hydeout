@@ -1,8 +1,9 @@
------
+---
 layout: page
 sidebar_link: true
 order: 2
------
+---
+
 **LING 4/550 Students:** Click [here]("teaching/vtl/index.html") for the Vocal Tract Measurement lab.
 
 **LING 269 Students:**  Click [here]("teaching/stroop.html") for access to the Taboo Stroop test.
