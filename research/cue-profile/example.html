@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Draft</title>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+
+		<link href=experiment-style.css rel="stylesheet" type="text/css">
+		<script src='experiment.js'></script>
+<!-- 		<audio id='audio' src='audios/d1_s1.wav' type="audio/wav" hidden muted></audio>
+ -->	</head>
+	<body>
+		<p>Click the button that sounds closest to the syllable you just heard</p>
+		<div style="margin:5% 0% 5% 0%;">
+			<div class='button-row'>
+				<button id='1' onclick='record(1)' disabled>DAH</button>
+				<button id='3' onclick='record(3)' disabled>LAH</button>
+			</div>
+			<div class='button-row'>
+				<button id='nav' onclick='start()' style='padding:2% 0%;'>START</button>
+			</div>
+			<div class='button-row'>
+				<button id='2' onclick='record(2)' disabled>BAH</button>
+				<button id='4' onclick='record(4)' disabled>WAH</button>
+			</div>
+		</div>
+	</body>
+</html>

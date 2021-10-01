@@ -1,0 +1,8 @@
+
+Subj	Trial	TrainingLevel	Stimuli_Type	Stimuli_1	Stimuli_2	Response		Correct
+8	NaN	1	D_S	5	5	WAH		4
+8	NaN	1	D_S	1	5	LAH		3
+8	NaN	2	D_S	1	1	DAH		1
+8	NaN	2	D_S	5	5	WAH		4
+8	NaN	3	D_S	1	4	undefined		undefined
+8	NaN	3	D_S	4	5	undefined		undefined
