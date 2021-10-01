@@ -2,6 +2,7 @@
 layout: page
 title: Research
 sidebar_link: true
+order: 1
 ---
 
 # Ongoing experiments
