@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head id='head'>
+		<title>Minimal Set Selector</title>
+		<script src="cmu.js"></script>
+		<script src="cmu_freq.js"></script>
+		<link href="cmustyle.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+</head>
+	<body>
+		<h1>Minimal Set Creator</h1>
+		<p>Use this form to create a set of words in English which is minimal in some sense.  The possible vocabulary comes from the <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict?in=Lister&stress=-s#about" target="_blank">CMU Pronouncing Dictionary</a>.  Possible lexemes are sorted and returned by frequency, as reported in the <a href="https://catalog.ldc.upenn.edu/LDC2011T07" target="_blank">English Gigaword Fifth Edition corpus.</a>
+		<h2>Configuration</h2>
+		<form action="/generate" method="post" id="config">	
+			<h3>Environment</h3>
+			<input type="checkbox" id="initial" name="initial" onchange="toggleAntecedent();"><label for="initial">Must be word-initial</label><br>
+			<input type="checkbox" id="final" name="final" onchange="toggleSubsequent();"><label for="initial">Must be word-final</label><br>
+			<input type="checkbox" id="stressed" name="stressed" onchange="makeVowel();"><label for="stressed">Must have primary stress</label><br>
+			<input type="checkbox" id="unstressed" name="unstressed" onchange="makeVowel();"><label for="stressed">Must be unstressed</label><br>
+			<input type="checkbox" id="unstressed" name="unstressed" onchange="makeVowel();" disabled><label for="stressed">(Coming soon) environments must match exactly.</label><br>
+			<div id='antecedent'>
+				<h4>Antecedent:</h4>
+				<input type='radio' value='all' name='antecedent' onchange="allOptions(0);"><label for='all'>all</label><br>
+				<input type='radio' value='vowel' name='antecedent' onchange="vowelOptions(0);"><label for='vowel' >vowel</label><br>
+				<input type='radio' value='consonant' name='antecedent' onchange="consonantOptions(0);"><label for='consonant'>consonant</label><br>
+				<div id='optionsHolder0'></div>
+			</div>
+			<div id='subsequent'>
+				<h4>Subsequent:</h4>
+				<input type='radio' value='all' name='subsequent' onchange="allOptions(1);"><label for='all'>all</label><br>
+				<input type='radio' value='vowel' name='subsequent' onchange="vowelOptions(1);"><label for='vowel' >vowel</label><br>
+				<input type='radio' value='consonant' name='subsequent' onchange="consonantOptions(1);"><label for='consonant'>consonant</label><br>
+				<div id='optionsHolder1'></div>
+			</div>
+			<h3>Features for Target Segment</h3>
+			<input type='radio' id='targetVowel' value='vowel' name='target' onchange="vowelOptions(2);"><label for='targetVowel' >vowel</label><br>
+			<input type='radio' id='targetConsonant' value='consonant' name='target' onchange="consonantOptions(2);"><label for='targetConsonant'>consonant</label><br>	
+			<div id='optionsHolder2'></div>
+			<br>
+			<div id='errorSpace'></div>
+			<input type="submit" value="generate"> 
+		</form>
+		<br>
+		<a href="" id="download" hidden disabled>Download</a>
+		<script src="make_minimal_sets.js"></script>
+
+	</body>
+</html>
