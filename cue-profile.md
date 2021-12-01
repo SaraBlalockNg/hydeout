@@ -18,7 +18,7 @@ Because there isn't a true sense of accuracy for the synthesized continnua of sp
 
 The accuraccy vector begins as a 7-dimensional zero vector:
  
-$$ \left[ 0 0 0 0 0 0 0 \right] $$
+$$  0+0 $$
 
 Each trial consists of a stimulus and response.  To increment the accuracy vector, we locate the position of the stimulus on the grid.  If the text for that cell contains a (response, n) pair corresponding to the given response, the nth dimension of the vector is incremented by one.
 
