@@ -17,6 +17,10 @@ As a graduate student at UW, I am a TA for various Linguistics and Computer Scie
 
 - Spring 2018:  LING 269 Swearing and Taboo Language \[[course summary](https://myplan.uw.edu/course/#/courses/LING269)\]
 - Fall 2018:  LING 570 Shallow Processing Techniques for Natural Language Procesing \[[course summary](https://myplan.uw.edu/course/#/courses/LING570)\]
-- Spring 2019:  CSE 472 Introduction to Computational Linguistics \[[current course web page](http://courses.washington.edu/ling472/)
-- Summer 2020:  LING 473 Computational Linguistics Basics \[[course summary](https://myplan.uw.edu/course/#/courses/LING473)\] (sole instructor)
+- Spring 2019:  CSE 472 Introduction to Computational Linguistics \[[course summary](http://courses.washington.edu/ling472)/](https://myplan.uw.edu/course/#/courses/LING472))
+- \*Summer 2020:  LING 473 Computational Linguistics Basics \[[course summary](https://myplan.uw.edu/course/#/courses/LING473)\]
 - Fall 2020:  LING 450:  Introduction to Linguistic Phonetics \[[course summary](https://myplan.uw.edu/course/#/courses/LING450)\]
+- \*Spring 2022: LING 472: Introduction to Computational Linguistics \[[course summary](http://courses.washington.edu/ling472)\](https://myplan.uw.edu/course/#/courses/LING472))
+- \*Winter 2023:  LING 450:  Introduction to Linguistic Phonetics \[[course summary](https://myplan.uw.edu/course/#/courses/LING450)\]
+
+* taught as Instructor of Record
