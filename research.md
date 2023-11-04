@@ -5,11 +5,15 @@ sidebar_link: true
 order: 1
 ---
 
-## Ongoing experiments
+
+
+## Research Tool Demos
+
+[Word Class Generator](socio/make_wc.html)
 
 "Tap a rhythm or play a melody" (mTurk) \[[Example 1](metrical/piano_sample), [Example 2](metrical/taps_sample)\]
 
-[Opinions on Toisanese Sentences](socio/experiment.php)
+[Opinions on Toisanese Sentences Survey](socio/experiment.php)
 
 ## About
 I do Natural Language Processing on corpus speech data.  My areas of interest include use of linguistic strctures in conjunction with deep learning methods, acoustic language modeling, and NLP in general for low-resource language tasks, especially for languages without orthographic forms. <!-- My research goal is to create innovative algorithmic advances and to align existing frameworks with the needs of underrepresented language communities.--> I believe that prosody is an exciting and underexplored frontier for the advancement <!--implementation--> of the state-of-the-art in deep learning for natural language understanding.
