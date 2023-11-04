@@ -9,7 +9,9 @@ order: 1
 
 ## Research Tool Demos
 
-[Word Class Generator](socio/make_wc.html)
+[English Word Class Generator (beta)](research/elicitations/make_wc.html)
+
+[English Minimal Pair Generator (beta)](research/elicitations/index.html)
 
 "Tap a rhythm or play a melody" (mTurk) \[[Example 1](metrical/piano_sample), [Example 2](metrical/taps_sample)\]
 
