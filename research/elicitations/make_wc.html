@@ -10,9 +10,10 @@
 </head>
 	<body>
 		<h1>Word Class Generator</h1>
-		<p>Use this form to generate a word class set in English.  The possible vocabulary comes from the <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict?in=Lister&stress=-s#about" target="_blank">CMU Pronouncing Dictionary</a>.  Possible lexemes are sorted and returned by frequency, as reported in the <a href="https://catalog.ldc.upenn.edu/LDC2011T07" target="_blank">English Gigaword Fifth Edition corpus.</a>
+		<p>Use this form to generate a word class set in English.  The possible vocabulary comes from the <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict?in=Lister&stress=-s#about" target="_blank">CMU Pronouncing Dictionary</a>. </p>
+			<!-- Possible lexemes are sorted and returned by frequency, as reported in the <a href="https://catalog.ldc.upenn.edu/LDC2011T07" target="_blank">English Gigaword Fifth Edition corpus.</a> -->
 		<h2>Instructions</h2>
-		<p>In the input field, type the phonemic environment you'd like this class to match using arpabet characters. For wildcards, use _ (any), VX (vowel) and CX (consonant) Characters can be combined using the pipe character (|).</p>
+		<p>In the input field, type the phonemic environment you'd like this class to match using arpabet characters. For wildcards, use _ (any), VX (vowel) and CX (consonant) Characters can be combined using the pipe character (|). Because of combinatoric complexity, frames with many wildcards and pipes will take a long time to generate.</p>
 		<p>For example, if you'd like all FEEL type words, you could type  'CX IY L'. To include both FEEL and FILL type words, type 'CX IY|EH L'</p>
 		<p>The primary stress toggle checks whether any phone in the matching substring of a CMU pronunciation contains the primary stress marker.  Right now, using stress markers in the input frame will break the generator.</p>
 		<p>Filtering by part of speech is currently unsupported.</p>

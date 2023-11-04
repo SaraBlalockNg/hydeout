@@ -30,6 +30,15 @@ function getAllCombinations(arrays) {
 	}, [[]]);
 }
 
+function customSort(a, b) {
+  const indexA = [...cmuFreq].indexOf(a);
+  const indexB = [...cmuFreq].indexOf(b);
+  if (indexA === -1) return 1;
+  if (indexB === -1) return -1;
+  return indexA - indexB;
+}
+
+
 // Function to check if an array matches the test array exactly, ignoring the first and last items and numbers
 function matchesExactly(array, testArray, primaryStress = false) {
   if (array.length !== testArray.length + 2) {
@@ -82,11 +91,11 @@ function isSubArray(array, testArray, primaryStress = false) {
 }
 
 
-function getMatches(dictionaryOfArrays, testArray, exact){
+function getMatches(dictionaryOfArrays, testArray, exact,primaryStress){
 	var matches = [];
 	if (exact) {
 		for (let key in dictionaryOfArrays) {
-			if (matchesExactly(dictionaryOfArrays[key], testArray)) {
+			if (matchesExactly(dictionaryOfArrays[key], testArray,primaryStress=primaryStress)) {
 				matches.push(key);
 			}
 		}
@@ -134,16 +143,6 @@ form.addEventListener('submit', (event) => {
 	var exact = document.getElementsByName('exact')[0].checked;
 	var inputText = form.elements['textInput'].value;
 
-	if (primaryStress){
-		console.log('primarystress');
-	}
-	if (exact){
-		console.log('exact');
-	}
-	else {
-		console.log('inexact');
-	}
-
 	// Split the text string by ' '
 	var firstLevelArray = inputText.split(' ');
 	var returnedArray = [];
@@ -151,7 +150,7 @@ form.addEventListener('submit', (event) => {
 	firstLevelArray.forEach((element) => {
 			// Split each element by '|'
 			var secondLevelArray = element.split('|');
-		// Check if 'VX' is in the second level array
+				// Check if 'VX' is in the second level array
 				var replacedArray = secondLevelArray.map((item) => {
 						if (item === 'VX') {
 							return Array.from(vowels);
@@ -169,12 +168,6 @@ form.addEventListener('submit', (event) => {
 				});
 			secondLevelArray = replacedArray.flat();
 			returnedArray.push(Array.from(new Set(secondLevelArray)));
-			// Iterate through the elements of the second level array
-			// secondLevelArray.forEach((item) => {
-			//		 console.log(item);
-			// });
-			// console.log('one done')
-
 	});
 
 	allCombinations = getAllCombinations(returnedArray);
@@ -182,17 +175,17 @@ form.addEventListener('submit', (event) => {
 	// expand any wildcard
 	var allMatches = [];
 	for (candidate of allCombinations){
-		let matches = getMatches(cmu,candidate,exact);
+		let matches = getMatches(cmu,candidate,exact,primaryStress);
 		allMatches.push(matches)
-		// var matches = getMatches(cmuFreq,candidate,exact);
-
 	}
-	debugger;
+
+	var toPrint = allMatches.flat()
+
 	// count the number of vowels and assign 
 	document.getElementById('download').disabled = document.getElementById('download').hidden = false;
 	var fileName = 'wordclass.txt';
 	
-	var fileContent = allMatches.flat().join('\n');
+	var fileContent = toPrint.join('\n');
 	var myFile = new Blob([fileContent], {type: 'text/plain'});
 	window.URL = window.URL || window.webkitURL;
 	document.getElementById('download').setAttribute('href', window.URL.createObjectURL(myFile));
