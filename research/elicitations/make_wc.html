@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head id='head'>
+		<title>Word Class Generator</title>
+		<script src="cmu.js"></script>
+		<script src="cmu_freq.js"></script>
+		<link href="cmustyle.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+</head>
+	<body>
+		<h1>Word Class Generator</h1>
+		<p>Use this form to generate a word class set in English.  The possible vocabulary comes from the <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict?in=Lister&stress=-s#about" target="_blank">CMU Pronouncing Dictionary</a>.  Possible lexemes are sorted and returned by frequency, as reported in the <a href="https://catalog.ldc.upenn.edu/LDC2011T07" target="_blank">English Gigaword Fifth Edition corpus.</a>
+		<h2>Instructions</h2>
+		<p>In the input field, type the phonemic environment you'd like this class to match using arpabet characters. For wildcards, use _ (any), VX (vowel) and CX (consonant) Characters can be combined using the pipe character (|).</p>
+		<p>For example, if you'd like all FEEL type words, you could type  'CX IY L'. To include both FEEL and FILL type words, type 'CX IY|EH L'</p>
+		<p>The primary stress toggle checks whether any phone in the matching substring of a CMU pronunciation contains the primary stress marker.  Right now, using stress markers in the input frame will break the generator.</p>
+		<p>Filtering by part of speech is currently unsupported.</p>
+
+		<h2>Configuration</h2>
+		<form action="/generate" method="post" id="config">	
+			<input type="checkbox" name="pstress" id='pstress'><label for='pstress'>Target must have primary stress</label><br>
+			<input type="checkbox" name="exact" id='exact'><label for='exact'>Frame must be an exact match</label><br>
+			<label for="textInput">Type your frame here:</label><br><input type="text" id="textInput" name="textInput"><br>
+			<input type="submit" value="generate"> 
+		</form>
+<a href="" id="download" hidden disabled>Download</a>
+<script src="make_word_class.js"></script>
+
+	</body>
+</html>
