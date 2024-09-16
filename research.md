@@ -19,8 +19,8 @@ Western students interested in doing research with me should send an e-mail to s
 You do not need to have a project in mind to get started doing research! Come talk to me and we can discuss ideas or existing projects that you may want to work on.
 
 ## Theses
-- *Prosody in Human Communication and Machine Understanding* [pdf](docs/phd-thesis.pdf)
-- *Musical text-setting as evidence for syllabficiation of highly moraic structures in English*, [pdf](docs/thesis.pdf)
+- [*Prosody in Human Communication and Machine Understanding*](docs/phd-thesis.pdf)
+- [*Musical text-setting as evidence for syllabficiation of highly moraic structures in English*](docs/thesis.pdf)
 
 ## Publications
 - [2024] Nicolas Ballier, Léa Burin, Behnoosh Namdarzadeh, Sara Ng, Richard Wright, Jean-Baptiste Yunès
@@ -103,11 +103,11 @@ The following are a representation of the work that I completed as a student:
 
 - An LSTM Architecture for Phonotactically-Informed Word Segmentation \[[pdf](docs/word_segmentation.pdf)\]
 - A chatbot for learning about mental health disorders \[[pdf](docs/mental_health_chatbot.pdf)\]
-- Metalinguistic Judgments of Idiomatic Language in Diaspora Hoisanva \[[pdf](docs/hoisan_meta.pdf )\]\]
+- Metalinguistic Judgments of Idiomatic Language in Diaspora Hoisanva \[[pdf](docs/hoisan_meta.pdf )\]
 - Acoustic Cues of Morphological Contrast Focus in Taishanese \[[pdf](docs/hoisan_cf.pdf)\]
 - Phonemic Inventory of Marshallese, and some General Properties \[[pdf](docs/marshallese.pdf)\]
 - Properties of Constructed Language Phonological Inventories \[[pdf](docs/clips.pdf)\]\]
 - An Error Analysis of the English Resource Grammar with English Learner Data, and Application \[[pdf](docs/teccl.pdf)\]
-- A Survey of Minimalist Analyses of Floating Quantifiers in German \[[pdf](docs/german.pdf)\]\]
+- A Survey of Minimalist Analyses of Floating Quantifiers in German \[[pdf](docs/german.pdf)\]
 - An Overview of Dependent Plurals in English, and Some Interesting Cases \[[pdf](docs/dependent_plurals.pdf)\]
 - Gemination in Taishanese explained by Autosegmentalism \[[pdf](docs/hoisan_gemination.pdf)\]
