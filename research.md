@@ -8,7 +8,7 @@ order: 1
 
 ## Work with Me
 
-Western students interested in doing research with me should send an e-mail to sarang (at) wwu.edu, or discuss in person. The kind of projects I am happy to advise on include but are not limited to:
+Western students interested in doing research with me should send an e-mail to sara.ng (at) wwu.edu, or discuss in person. The kind of projects I am happy to advise on include but are not limited to:
 
 - phonetic analysis
 - speech classification
