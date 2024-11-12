@@ -5,7 +5,7 @@ sidebar_link: true
 order: 2
 ---
 
-**Phonetics Students:** Click [here](teaching/vtl/index.html) for the Vocal Tract Measurement lab.
+**Phonetics Students:** Click [here](teaching/vtl/index.html) for the Vocal Tract Measurement lab. For writing phonetic inventories feel free to use the pulmonic [consonant chart generator](teaching/consonant_chart.html) and the [vowel trapezoid generator](vowel_chart.html).
 
 **LING 269 Students:**  Click [here](teaching/stroop.html) for access to the Taboo Stroop test.
 
