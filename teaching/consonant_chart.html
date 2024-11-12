@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive IPA Consonant Table</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Charis+SIL&display=swap">
+    <style>
+	body {
+	    font-family: 'Charis SIL', serif;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	}
+	table {
+	    border-collapse: collapse;
+	    margin-top: 20px;
+	}
+
+	th, td {
+	    border: 1px solid black;
+	    padding: 5px;
+	    text-align: center;
+	    width: 60px;
+	    height: 25px;
+	}
+	p {
+		padding: 40px;
+	}
+
+	.cell-input {
+	    width: 20px; /* Reduced width for side-by-side display */
+	    height: 20px;
+	    text-align: center;
+	    font-size: 1em;
+	    margin: 0 2px; /* Space between inputs */
+	    display: inline-block;
+	    border: 0;
+        font-family: 'Charis SIL', serif; /* Apply Charis SIL font */
+	}
+
+	.column-buttons {
+	    display: flex;
+	    justify-content: space-between;
+	}
+
+	.column-buttons button {
+	    padding: 2px 5px;
+	}
+
+	td.greyed-out {
+	    background-color: lightgrey;
+	    pointer-events: none; /* Disable interaction */
+	}
+
+    </style>
+
+
+</head>
+<body>
+
+<h1>Interactive IPA Consonant Table</h1>
+
+<p>This is an interative IPA chart, which you can edit to suit the phonetic or 
+	phonological inventory of your language. Each cell has a voiceless and voiced input window; click inside the cell to type a phone. If a cell should be greyed out, double click in the region outside of the text inputs. To add a column, first click on a phone in the column to the right of where your new column should go, then click "Add column left." Similarly to remove a column, click on a phone in that column and then click "Delete Column."
+
+<div class="button-row">
+    <button id="addColumnButton">Add Column Left</button>
+    <button id="deleteColumnButton">Delete Column</button>
+    <button id="addRowButton">Add Row Below</button>
+    <button id="deleteRowButton">Delete Row</button>
+</div>
+
+
+
+<table id="consonantTable">
+    <thead>
+        <tr id="buttonRow">
+            <!-- Placeholder for control buttons dynamically added -->
+        </tr>
+        <tr id="headerRow">
+            <th></th> <!-- Empty header cell for row labels -->
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        <!-- Placeholder for rows dynamically added -->
+    </tbody>
+</table>
+<br />
+<button onclick="downloadSVG()">Save Table as SVG</button>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script>
+    const columns = [
+        'Bilabial', 'Labiodental', 'Dental', 'Alveolar', 
+        'Postalveolar', 'Retroflex', 'Palatal', 'Velar', 
+        'Uvular', 'Pharyngeal', 'Glottal'
+    ];
+    const rows = [
+        'Stop', 'Nasal', 'Trill', 'Tap', 
+        'Fricative', 'Lateral Fricative', 'Approximant', 'Lateral Approximant'
+    ];
+
+    const phones = [
+    	[['p','b'],	['',''],	['',''],	['t','d'],	['',''],	['ʈ','ɖ'],
+    	 ['c','ɟ'],	['k','g'],	['q','ɢ'],	['',''],	['ʔ','']],
+    	[['','m'],	['','ɱ'],	['',''],	['','n'],	['',''],	['','ɳ'],
+    	 ['','ɲ'],	['','ŋ'],	['','ɴ'],	['',''],	['','']],
+    	[['','ʙ'],	['',''],	['',''],	['','r'],	['',''],	['',''],
+    	 ['',''],	['',''],	['','ʀ'],	['',''],	['','']],
+    	[['',''],	['','ⱱ'],	['',''],	['','ɾ'],	['',''],	['','ɽ'],
+    	 ['',''],	['',''],	['',''],	['',''],	['','']],
+    	[['ɸ','β'],	['f','v'],	['θ','ð'],	['s','z'],	['ʃ','ʒ'],	['ʂ','ʐ'],
+    	 ['ç','ʝ'],['x','ɣ'],['χ','ʁ'],['ħ','ʕ'],['h','ɦ']],
+    	[['',''],	['',''],	['',''],	['ɬ','ɮ'],	['',''],	['',''],
+    	 ['',''],	['',''],	['',''],	['',''],	['','']],
+    	[['',''],	['','ʋ'],	['',''],	['','ɹ'],	['',''],	['','ɻ'],
+    	 ['','j'],	['','ɰ'],	['',''],	['',''],	['','']],
+    	[['',''],	['',''],	['',''],	['','l'],	['',''],	['','ɭ'],
+    	 ['','ʎ'],	['','ʟ'],	['',''],	['',''],	['','']]];
+
+    const buttonRow = document.getElementById('buttonRow');
+    const headerRow = document.getElementById('headerRow');
+    const tableBody = document.getElementById('tableBody');
+
+    const addColumnButton = document.getElementById('addColumnButton');
+    const deleteColumnButton = document.getElementById('deleteColumnButton');
+    const addRowButton = document.getElementById('addRowButton');
+    const deleteRowButton = document.getElementById('deleteRowButton');
+
+    let lastClickedColumn = null;  // To track the last clicked column
+    let lastClickedRow = null;  // To track the last clicked column
+
+    // Function to create the initial table
+    function createTable() {
+        // Add initial columns
+        columns.forEach((column, index) => {
+            addColumn(index + 1, column);
+        });
+
+        // Add rows with input fields
+        rows.forEach((row,index) => {
+            const rowElement = document.createElement('tr');
+            rowElement.className = 'data-row';
+            rowElement.dataset.rowName = row;
+            
+            // First cell for row label
+            const rowLabel = document.createElement('th');
+            rowLabel.textContent = row;
+            rowElement.appendChild(rowLabel);
+
+            // Remaining cells for input fields
+            columns.forEach((oneCell,index2) => {
+                const cell = createCell(phones[index][index2][0],phones[index][index2][1]);
+                rowElement.appendChild(cell);
+            });
+
+            tableBody.appendChild(rowElement);
+        });
+        cornerCell = document.getElementsByTagName('th')[0]
+		cornerCell.style.borderTop = 'none';
+		cornerCell.style.borderLeft = 'none';
+    }
+
+    // Function to add a new column
+    function addColumn(index, columnName = 'New Column') {
+        // Add header cell with renaming functionality
+        const header = document.createElement('th');
+        header.textContent = columnName;
+        header.contentEditable = true; // Make header editable for renaming
+        header.title = 'Click to rename column';
+        headerRow.insertBefore(header, headerRow.children[index]);
+
+
+        // Add cells to each data row
+        Array.from(tableBody.children).forEach(row => {
+            const cell = createCell('VL','V');
+            row.insertBefore(cell, row.children[index]);
+        });
+    }
+
+    // Function to add a row below the clicked row
+    function addRow(index) {
+        const rowElement = document.createElement('tr');
+        rowElement.className = 'data-row';
+
+        const rowLabel = document.createElement('th');
+        rowLabel.contentEditable = true; // Make row header editable
+        rowLabel.textContent = "New Row";
+        rowElement.appendChild(rowLabel);
+
+        columns.forEach(() => {
+            const cell = createCell('VL', 'V'); // Default placeholders
+            rowElement.appendChild(cell);
+        });
+
+        tableBody.insertBefore(rowElement, tableBody.children[index + 1]);
+    }
+
+    // Function to delete a row based on the last clicked cell's row index
+    function deleteRow(index) {
+        tableBody.removeChild(tableBody.children[index]);
+    }
+
+
+	function createCell(placeHolder1,placeHolder2) {
+	    const cell = document.createElement('td');
+	    
+	    const leftInput = document.createElement('input');
+	    leftInput.type = 'text';
+	    leftInput.className = 'cell-input';
+	    leftInput.value = placeHolder1; // Voiceless sound placeholder
+
+	    const rightInput = document.createElement('input');
+	    rightInput.type = 'text';
+	    rightInput.className = 'cell-input';
+	    rightInput.value = placeHolder2; // Voiced sound placeholder
+
+	    cell.appendChild(leftInput);
+	    cell.appendChild(rightInput);
+
+	    // Add click event listener to set last clicked column
+	    cell.addEventListener('click', function() {
+	        lastClickedColumn = Array.from(cell.parentElement.children).indexOf(cell);
+            lastClickedRow = Array.from(tableBody.children).indexOf(cell.parentElement); // Track row
+
+        });
+
+	    // Add double-click event to toggle greying out the cell
+	    cell.addEventListener('dblclick', function(event) {
+	        // Check if the double-click wasn't on one of the input fields
+	        if (event.target !== leftInput && event.target !== rightInput) {
+	            // If the cell is greyed out, revert it back to its normal state
+	            if (cell.style.backgroundColor === 'lightgrey') {
+	                cell.style.backgroundColor = ''; // Remove grey color
+	                leftInput.style.display = '';	                
+	                rightInput.style.display = '';	                
+	            } else {
+	                // If it's not greyed out, grey it out and disable interaction
+	                cell.style.backgroundColor = 'lightgrey';
+	                rightInput.style.display = 'none';
+	                leftInput.style.display = 'none';
+	                // cell.style.pointerEvents = 'none'; // Disable further interaction (no editing)
+	            }
+	        }
+	    });
+
+	    return cell;
+	}
+
+    // Function to delete a column based on the last clicked cell's column index
+    deleteColumnButton.addEventListener('click', function() {
+        if (lastClickedColumn !== null) {
+            // Remove the header column
+            headerRow.removeChild(headerRow.children[lastClickedColumn ]);
+
+            // Remove the button column in the button row
+            // Remove cells in the table body
+            Array.from(tableBody.children).forEach(row => {
+                row.removeChild(row.children[lastClickedColumn ]);
+            });
+
+            // Reset last clicked column
+            lastClickedColumn = null;
+        } else {
+            alert("Please click a cell in the column you want to delete.");
+        }
+    });
+
+    // Function to add a column based on the last clicked cell's column index
+    addColumnButton.addEventListener('click', function() {
+        if (lastClickedColumn !== null) {
+            addColumn(lastClickedColumn );
+            lastClickedColumn = null;  // Reset after adding the column
+        } else {
+            alert("Please click a cell in the column you want to add a new column to.");
+        }
+    });
+
+    addRowButton.addEventListener('click', function() {
+    if (lastClickedRow !== null) {
+            addRow(lastClickedRow);
+            lastClickedRow = null;  // Reset after adding the row
+        } else {
+            alert("Please click a cell in the row you want to add a new row below.");
+        }
+    });
+
+    deleteRowButton.addEventListener('click', function() {
+    if (lastClickedRow !== null) {
+            deleteRow(lastClickedRow);
+            lastClickedRow = null;  // Reset after deleting the row
+        } else {
+            alert("Please click a cell in the row you want to delete.");
+        }
+    });
+
+    function downloadSVG() {
+        const table = document.getElementById('consonantTable');
+        const cells = table.querySelectorAll('td');
+        const originalContent = []; // To store original HTML content (input elements)
+
+        // Step 1: Temporarily replace inputs with text for SVG export
+        cells.forEach((cell, index) => {
+            const inputs = cell.querySelectorAll('input.cell-input');
+            
+            // Only process cells with two input elements (voiceless and voiced)
+            if (inputs.length === 2) {
+                // Store the original cell content
+                originalContent[index] = {
+                    voiceless: inputs[0].value.trim() || '',
+                    voiced: inputs[1].value.trim() || ''
+                };
+
+                // Set the temporary text with a non-breaking space between the two values
+                // Make sure to align the input fields even when one is empty
+                const voiceless = originalContent[index].voiceless || '\u00A0\u00A0';  // Use a space if blank
+                const voiced = originalContent[index].voiced || '\u00A0\u00A0';  // Use a space if blank
+                
+                // Create a temporary structure with space for both values
+                cell.innerHTML = `${voiceless} \u00A0\u00A0 ${voiced}`;
+            }
+        });
+
+        // Step 2: Capture the table as an SVG using html2canvas
+        html2canvas(table, {
+            scale: 2,                // Higher resolution for better quality
+            backgroundColor: null,   // Transparent background for SVG
+        }).then(function(canvas) {
+            const svg = createSVGFromCanvas(canvas);
+            const svgBlob = new Blob([svg], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(svgBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'table.svg';
+            link.click();
+
+            // Step 3: Restore the original input values after exporting
+            cells.forEach((cell, index) => {
+                if (originalContent[index]) {
+                    // Restore the original input values
+                    const inputs = cell.querySelectorAll('input.cell-input');
+                    if (inputs.length === 2) {
+                        inputs[0].value = originalContent[index].voiceless;
+                        inputs[1].value = originalContent[index].voiced;
+                    }
+                }
+            });
+        });
+    }
+
+    function createSVGFromCanvas(canvas) {
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="${canvas.width}" height="${canvas.height}">
+                    <image href="${canvas.toDataURL('image/png')}" width="${canvas.width}" height="${canvas.height}"/>
+                </svg>`;
+    }
+
+
+
+
+    // Initialize table
+    createTable();
+</script>
+
+</body>
+</html>
