@@ -1,8 +1,7 @@
 ---
 layout: page
 title: Potpourri
-sidebar_link: true
-order: 3
+sidebar_link: false
 ---
 
 # References
