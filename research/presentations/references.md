@@ -1,10 +1,8 @@
 ---
 layout: page
-title: Potpourri
+title: References
 sidebar_link: false
 ---
-
-# References
 
 - Bögels, S., & Torreira, F. (2015). Listeners use intonational phrase boundaries to project turn ends in spoken interaction. Journal of Phonetics, 52, 46–57.
 - Cheang, H. S., & Pell, M. D. (2008). The sound of sarcasm. Speech Communication, 50(5), 366–381. doi: 10.1016/j.specom.2007.11.003
